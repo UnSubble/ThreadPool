@@ -16,6 +16,7 @@ public final class Consumer implements Task {
 			synchronized(conKey) {
 				if (!manager.removeList()) {
 					try {
+						conKey.notify();
 						conKey.wait();
 					} catch (InterruptedException e) { }
 				}

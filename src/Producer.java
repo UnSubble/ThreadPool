@@ -15,6 +15,7 @@ public final class Producer implements Task{
 			synchronized (proKey) {
 				if (!manager.addList()) {
 					try {
+						proKey.notify();
 						proKey.wait();
 					} catch (InterruptedException e) { }
 				}
