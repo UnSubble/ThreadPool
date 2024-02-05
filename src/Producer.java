@@ -15,12 +15,12 @@ public final class Producer implements Task{
 			synchronized (proKey) {
 				if (!manager.addList()) {
 					try {
-						proKey.notify();
+						proKey.notifyAll();
 						proKey.wait();
 					} catch (InterruptedException e) { }
 				}
 				System.out.printf("Producer %s has produced.\n", Thread.currentThread().getName());
-				proKey.notify();
+				proKey.notifyAll();
 			}
 		}
 	}
