@@ -16,12 +16,12 @@ public final class Consumer implements Task {
 			synchronized(conKey) {
 				if (!manager.removeList()) {
 					try {
-						conKey.notify();
+						conKey.notifyAll();
 						conKey.wait();
 					} catch (InterruptedException e) { }
 				}
 				System.out.printf("Consumer %s has consumed.\n", Thread.currentThread().getName());
-				conKey.notify();
+				conKey.notifyAll();
 			}		
 		}
 	}
